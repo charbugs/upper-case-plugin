@@ -16,8 +16,14 @@ const latestTodoIdReducer = (state = '', action) => {
 
 const upperCaseTodoText = (todoId) => (disptach, getState) => {
   const text = getState().todos[todoId].text;
-  const upperText = text.toUpperCase();
-  disptach(actions.updateTodo(todoId, { text: upperText }));
+  const upperCasedText = upperCaseText(text);
+  disptach(actions.updateTodo(todoId, { text: upperCasedText }));
+}
+
+const upperCaseText = (text) => {
+  return text.includes('plugin')
+    ? text
+    : text.toUpperCase() + ' (upper cased by plugin)';
 }
 
 /******** Component **********/
